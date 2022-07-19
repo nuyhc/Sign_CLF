@@ -1,4 +1,8 @@
 *.jpg
+*.jpeg
 *.png
 *.heic
-*.jpeg
+
+*.csv
+
+*.json
