@@ -1,6 +1,7 @@
 streamlit
 streamlit_webrtc
 torch
+tensorflow
 
 torchvision
 opencv-python
