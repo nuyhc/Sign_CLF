@@ -60,15 +60,15 @@ def convert_letter(result):
         return "err"
 
 
-def img_resize_to_gray(fpath):
+def img_resize_to_gray(filename):
     """파일 경로를 입력 받아 사이즈 조정과 그레이로 변환하는 함수
 
     Args:
-        fpath (str): 파일 경로
+        filename (str): 파일 경로
     Returns:
         arr (np.array)
     """
-    img = cv2.imread(fpath)
+    img = cv2.imread(filename)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.resize(img, (300, 300))
     return img
@@ -76,7 +76,7 @@ def img_resize_to_gray(fpath):
 # def upload_and_predict(filename):
 #     # img = Image.open(filename)
 #     img = cv2.imread(filename)
-#     # img = cv2.imread(fpath)
+#     # img = cv2.imread(filename)
 #     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 #     img = cv2.resize(img, (300, 300))
 #     # img = Image.open(filename)
