@@ -11,6 +11,7 @@ import time
 
 from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration
 import av
+import threading
 
 
 try:
@@ -21,7 +22,7 @@ cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 960)
 # hand detection    
 detector = HandDetector(maxHands=1)
-classifier = Classifier("./model/keras_model.h5", "./model/labels.txt")
+classifier = Classifier("/model/keras_model.h5", "/model/labels.txt")
 
 
 offset = 20
@@ -31,10 +32,10 @@ labels = [chr(x).upper() for x in range(97, 123)]
 labels.remove("J")
 labels.remove("Z")
 
-device = 'cpu'
-if not hasattr(st, 'classifier'):
-    model = keras.models.load_model("../model/keras_model.h5")
-    # st.model = torch.hub.load('ultralytics/yolov5', 'custom', path='yolov5s.pt', _verbose=False)
+# device = 'cpu'
+# if not hasattr(st, 'classifier'):
+#     model = keras.models.load_model("../model/keras_model.h5")
+#     # st.model = torch.hub.load('ultralytics/yolov5', 'custom', path='yolov5s.pt', _verbose=False)
     
 while True:
     try:
