@@ -10,6 +10,8 @@ import seaborn as sns
 from PIL import Image
 import pillow_heif
 import cv2
+from skimage.io import imread
+from skimage.transform import resize
 
 # import splitfolders
 
@@ -20,6 +22,8 @@ from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, Dropout
 from tensorflow.keras.utils import plot_model
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from keras.applications.densenet import DenseNet121, preprocess_input
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 from sklearn.metrics import classification_report
@@ -42,6 +46,7 @@ st.write("""
 SIGN
 """)
 filename = st.file_uploader("Choose a file")
+st.text(filename)
 
 model = keras.models.load_model('model/model_kor_num_no_augmentation.h5')
 
@@ -77,20 +82,32 @@ def convert_letter(result):
 #     for idx in probs.argsort()[0][::-1][:8]:
 #         print("{:.2f}%".format(probs[0][idx]*100), "\t", label_maps_rev[idx].split("-")[-1])
 
-def upload_and_predict2(filename):
-    img = Image.open(filename)
-    img = img.convert('RGB')
-    img = img.resize((300, 300))
-    print(img.size)
-    # show image
+def upload_and_predict(filename):
+    assert os.path.exists(filename)
+    img = cv2.imread(fpath)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    img = cv2.resize(img, (300, 300))
+    # img = Image.open(filename)
+    # img = img.convert('RGB')
+    # img = img.resize((300, 300))
+    
     plt.figure(figsize=(4, 4))
     plt.imshow(img)
     plt.axis('off')
-    # predict
-#     img = imread(filename)
-#     img = preprocess_input(img)
+
+
+    # img = Image.open(filename)
+    # img = img.convert('RGB')
+    # img = img.resize((300, 300))
+    # # show image
+    # plt.figure(figsize=(4, 4))
+    # plt.imshow(img)
+    # plt.axis('off')
+    # # predict
+    # # img = imread(filename)
+    # # img = preprocess_input(img)
     probs = model.predict(np.expand_dims(img, axis=0))
-    return convert_letter(np.argmax(model.predict(img.reshape(1, 28, 28, 1))))
+    return convert_letter(np.argmax(model.predict(img)))
    
 
 
@@ -103,7 +120,11 @@ if filename is not None:
     plt.imshow(img)
     plt.axis('off')
 
+
+
+    # img = imread(filename)
+    # img = preprocess_input(img)
     probs = model.predict(np.expand_dims(img, axis=0))
     # text = []
     st.image(img, use_column_width=False)
-    st.text(convert_letter(np.argmax(model.predict(img))))
+    st.text(convert_letter(upload_and_predict(img)))
