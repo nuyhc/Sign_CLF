@@ -60,21 +60,18 @@ def convert_letter(result):
         return "err"
 
 
-# def upload_and_predict2(filename):
-#     img = Image.open(filename)
-#     img = img.convert('RGB')
-#     img = img.resize((224, 224))
-#     print(img.size)
-#     # show image
-#     plt.figure(figsize=(4, 4))
-#     plt.imshow(img)
-#     plt.axis('off')
-#     # predict
-# #     img = imread(filename)
-# #     img = preprocess_input(img)
-#     probs = pretrained_model.predict(np.expand_dims(img, axis=0))
-#     for idx in probs.argsort()[0][::-1][:8]:
-#         print("{:.2f}%".format(probs[0][idx]*100), "\t", label_maps_rev[idx].split("-")[-1])
+def img_resize_to_gray(fpath):
+    """파일 경로를 입력 받아 사이즈 조정과 그레이로 변환하는 함수
+
+    Args:
+        fpath (str): 파일 경로
+    Returns:
+        arr (np.array)
+    """
+    img = cv2.imread(fpath)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    img = cv2.resize(img, (300, 300))
+    return img
 
 def upload_and_predict(filename):
     # img = Image.open(filename)
