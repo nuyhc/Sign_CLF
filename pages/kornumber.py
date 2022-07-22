@@ -47,7 +47,7 @@ SIGN
 """)
 filename = st.file_uploader("Choose a file")
 
-st.text(filename)
+st.text(type(filename))
 
 model = keras.models.load_model('model/model_kor_num_no_augmentation.h5')
 
@@ -105,8 +105,8 @@ def img_resize_to_gray(filename):
 
 
 if filename is not None:
-    # img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
-    # img = cv2.cvtColor(filename, cv2.COLOR_BGR2GRAY)
+    img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+    img = cv2.cvtColor(filename, cv2.COLOR_BGR2GRAY)
     img = cv2.resize(filename, (300, 300))    
     plt.figure(figsize=(4, 4))
     plt.imshow(img)
