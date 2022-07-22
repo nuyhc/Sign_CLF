@@ -14,3 +14,4 @@ seaborn
 cvzone
 mediapipe
 pillow-heif
+scikit-image
