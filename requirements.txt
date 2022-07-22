@@ -13,3 +13,4 @@ tqdm
 seaborn
 cvzone
 mediapipe
+pillow-heif
