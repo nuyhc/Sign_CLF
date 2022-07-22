@@ -73,32 +73,32 @@ def img_resize_to_gray(fpath):
     img = cv2.resize(img, (300, 300))
     return img
 
-def upload_and_predict(filename):
-    # img = Image.open(filename)
-    img = cv2.imread(filename)
-    # img = cv2.imread(fpath)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    img = cv2.resize(img, (300, 300))
-    # img = Image.open(filename)
-    # img = img.convert('RGB')
-    # img = img.resize((300, 300))
-    plt.figure(figsize=(4, 4))
-    plt.imshow(img)
-    plt.axis('off')
+# def upload_and_predict(filename):
+#     # img = Image.open(filename)
+#     img = cv2.imread(filename)
+#     # img = cv2.imread(fpath)
+#     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+#     img = cv2.resize(img, (300, 300))
+#     # img = Image.open(filename)
+#     # img = img.convert('RGB')
+#     # img = img.resize((300, 300))
+#     plt.figure(figsize=(4, 4))
+#     plt.imshow(img)
+#     plt.axis('off')
 
 
-    # img = Image.open(filename)
-    # img = img.convert('RGB')
-    # img = img.resize((300, 300))
-    # # show image
-    # plt.figure(figsize=(4, 4))
-    # plt.imshow(img)
-    # plt.axis('off')
-    # # predict
-    # # img = imread(filename)
-    # # img = preprocess_input(img)
-    probs = model.predict(np.expand_dims(img, axis=0))
-    return convert_letter(np.argmax(model.predict(img)))
+#     # img = Image.open(filename)
+#     # img = img.convert('RGB')
+#     # img = img.resize((300, 300))
+#     # # show image
+#     # plt.figure(figsize=(4, 4))
+#     # plt.imshow(img)
+#     # plt.axis('off')
+#     # # predict
+#     # # img = imread(filename)
+#     # # img = preprocess_input(img)
+#     probs = model.predict(np.expand_dims(img, axis=0))
+#     return convert_letter(np.argmax(model.predict(img)))
 
 pred = np.argmax(model.predict(img_resize_to_gray(filename).reshape(1, 300, 300, 1)))
 
@@ -115,7 +115,7 @@ if filename is not None:
 
     # img = imread(filename)
     # img = preprocess_input(img)
-    pred = np.argmax(model.predict(img_resize_to_gray(filename).reshape(1, 300, 300, 1)))
+    pred = np.argmax(model.predict(img.reshape(1, 300, 300, 1)))
     # text = []
     st.image(img, use_column_width=False)
-    st.text(pred = np.argmax(model.predict(img_resize_to_gray(filename).reshape(1, 300, 300, 1))))
+    st.text(pred)
