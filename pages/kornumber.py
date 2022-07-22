@@ -103,25 +103,11 @@ def upload_and_predict(filename):
     probs = model.predict(np.expand_dims(img, axis=0))
     return convert_letter(np.argmax(model.predict(img)))
 
-
-def img_resize_to_gray(fpath):
-    """파일 경로를 입력 받아 사이즈 조정과 그레이로 변환하는 함수
-
-    Args:
-        fpath (str): 파일 경로
-    Returns:
-        arr (np.array)
-    """
-    img = cv2.imread(fpath)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    img = cv2.resize(img, (300, 300))
-    return img
-
-pred = np.argmax(model.predict(img_resize_to_gray("filepath").reshape(1, 300, 300, 1)))
+pred = np.argmax(model.predict(img_resize_to_gray(filename).reshape(1, 300, 300, 1)))
 
 
 if filename is not None:
-    img = cv2.imread(fpath)
+    img = cv2.imread(filename)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.resize(img, (300, 300))    
     plt.figure(figsize=(4, 4))
@@ -132,7 +118,7 @@ if filename is not None:
 
     # img = imread(filename)
     # img = preprocess_input(img)
-    pred = np.argmax(model.predict(img_resize_to_gray("filepath").reshape(1, 300, 300, 1)))
+    pred = np.argmax(model.predict(img_resize_to_gray(filename).reshape(1, 300, 300, 1)))
     # text = []
     st.image(img, use_column_width=False)
-    st.text(pred = np.argmax(model.predict(img_resize_to_gray("filepath").reshape(1, 300, 300, 1))))
+    st.text(pred = np.argmax(model.predict(img_resize_to_gray(filename).reshape(1, 300, 300, 1))))
