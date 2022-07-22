@@ -118,7 +118,7 @@ if filename is not None:
 
     # img = imread(filename)
     # img = preprocess_input(img)
-    pred = np.argmax(model.predict(img.reshape(1, 300, 300, 1)))
+    pred = np.argmax(model.predict(img))
     # text = []
     st.image(img, use_column_width=False)
     st.text(pred)
