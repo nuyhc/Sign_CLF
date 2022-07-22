@@ -33,7 +33,7 @@ labels.remove("Z")
 
 device = 'cpu'
 if not hasattr(st, 'classifier'):
-    st.model = keras.models.load_model("../model/keras_model.h5")
+    model = keras.models.load_model("../model/keras_model.h5")
     # st.model = torch.hub.load('ultralytics/yolov5', 'custom', path='yolov5s.pt', _verbose=False)
     
 while True:
@@ -93,7 +93,7 @@ class VideoProcessor:
 
         # model processing
         im_pil = Image.fromarray(flipped)
-        results = st.model(im_pil, size=112)
+        results = model(im_pil, size=112)
         bbox_img = np.array(results.render()[0])
 
         return av.VideoFrame.from_ndarray(bbox_img, format="bgr24")
