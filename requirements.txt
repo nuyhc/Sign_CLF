@@ -13,3 +13,4 @@ tqdm
 seaborn
 cvzone
 mediapipe
+opencv_contrib_python
