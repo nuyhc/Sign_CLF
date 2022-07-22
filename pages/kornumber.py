@@ -99,7 +99,7 @@ def img_resize_to_gray(filename):
 #     probs = model.predict(np.expand_dims(img, axis=0))
 #     return convert_letter(np.argmax(model.predict(img)))
 
-pred = np.argmax(model.predict(img_resize_to_gray(filename).reshape(1, 300, 300, 1)))
+# pred = np.argmax(model.predict(img_resize_to_gray(filename).reshape(1, 300, 300, 1)))
 
 
 if filename is not None:
