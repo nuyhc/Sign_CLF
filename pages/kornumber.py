@@ -69,9 +69,9 @@ def img_resize_to_gray(filename):
     Returns:
         arr (np.array)
     """
-    img = cv2.imread(filename)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    img = cv2.resize(img, (300, 300))
+    img = Image.open(filename)
+    img = img.convert('RGB')
+    img = img.resize((300, 300))
     return img
 
 # def upload_and_predict(filename):
@@ -107,9 +107,9 @@ def img_resize_to_gray(filename):
 if filename is not None:
     st.text(filename)
     st.text(type(filename))
-    img = cv2.imread(filename)
-    img = cv2.cvtColor(filename, cv2.COLOR_BGR2GRAY)
-    img = cv2.resize(filename, (300, 300))    
+    img = Image.open(filename)
+    img = img.convert('RGB')
+    img = img.resize((300, 300)) 
     plt.figure(figsize=(4, 4))
     plt.imshow(img)
     plt.axis('off')
