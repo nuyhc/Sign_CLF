@@ -47,6 +47,8 @@ SIGN
 """)
 filename = st.file_uploader("Choose a file")
 
+st.text(filename)
+
 model = keras.models.load_model('model/model_kor_num_no_augmentation.h5')
 
 
