@@ -105,7 +105,9 @@ def img_resize_to_gray(filename):
 
 
 if filename is not None:
-    img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+    st.text(filename)
+    st.text(type(filename))
+    img = cv2.imread(filename)
     img = cv2.cvtColor(filename, cv2.COLOR_BGR2GRAY)
     img = cv2.resize(filename, (300, 300))    
     plt.figure(figsize=(4, 4))
