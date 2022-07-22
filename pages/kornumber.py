@@ -51,12 +51,6 @@ st.text(filename)
 model = keras.models.load_model('model/model_kor_num_no_augmentation.h5')
 
 
-alpha = [chr(x).upper() for x in range(97, 123)]
-alpha.remove("J")
-alpha.remove("Z")
-idx = [x for x in range(0, 24)]
-
-
 def convert_letter(result):
     classLabels = {idx:c for idx, c in zip(idx, alpha)}
     try:
@@ -83,14 +77,13 @@ def convert_letter(result):
 #         print("{:.2f}%".format(probs[0][idx]*100), "\t", label_maps_rev[idx].split("-")[-1])
 
 def upload_and_predict(filename):
-    assert os.path.exists(filename)
-    img = cv2.imread(fpath)
+    img = Image.open(filename)
+    # img = cv2.imread(fpath)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.resize(img, (300, 300))
     # img = Image.open(filename)
     # img = img.convert('RGB')
     # img = img.resize((300, 300))
-    
     plt.figure(figsize=(4, 4))
     plt.imshow(img)
     plt.axis('off')
@@ -113,8 +106,8 @@ def upload_and_predict(filename):
 
 if filename is not None:
     img = Image.open(filename)
-    img = img.convert('RGB')
-    img = img.resize((300, 300))
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    img = cv2.resize(img, (300, 300))
     
     plt.figure(figsize=(4, 4))
     plt.imshow(img)
