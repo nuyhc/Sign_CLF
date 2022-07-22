@@ -12,3 +12,4 @@ scipy
 tqdm
 seaborn
 cvzone
+mediapipe
