@@ -1,0 +1,12 @@
+*.jpg
+*.jpeg
+*.png
+*.heic
+
+*.csv
+
+*.json
+
+# Except
+!eng_sign_tutorial.jpg
+!Sign-Language.png
